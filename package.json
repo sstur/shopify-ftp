@@ -1,0 +1,30 @@
+{
+  "name": "shopify-ftp",
+  "version": "0.1.6",
+  "description": "FTP Proxy for Shopify",
+  "main": "shopify.js",
+  "bin": {
+    "shopify": "./shopify.js"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sstur/shopify-ftp.git"
+  },
+  "keywords": [
+    "shopify",
+    "api",
+    "ftp",
+    "proxy",
+    "gateway"
+  ],
+  "author": "sstur",
+  "license": "BSD",
+  "dependencies": {
+    "commander": "^2.5.0",
+    "ftpd": "^0.2.11",
+    "request": "^2.47.0"
+  }
+}
