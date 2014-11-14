@@ -35,6 +35,8 @@ Then save/connect and you should be able to browse your assets and templates inc
 
 Note: your username contains __both__ your API key and your store name (separated by `@`).
 
-For even more fun, try [ExpanDrive](http://www.expandrive.com/) to mount as a local directory. [Edit: ExpanDrive won't work with this because we can't upload/download ranges (partial files) using the Shopify API. I will reach out to Shopify and see if this can be implemented.]
+I'd like to get this working with [ExpanDrive](http://www.expandrive.com/) to mount as a local directory. However, currently this won't work with ExpanDrive because we can't upload/download ranges (partial files) using the Shopify API.
+
+[Follow me on Twitter](https://twitter.com/simonsturmer) for updates!
 
 Have fun.
