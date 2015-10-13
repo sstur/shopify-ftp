@@ -10,8 +10,8 @@
 
   commander
     .version(require('./package.json').version)
-    .option('-p, --port', 'listen on port')
-    .option('-b, --bind', 'bind to address')
+    .option('-p, --port [port]', 'listen on specified port')
+    .option('-b, --bind [address]', 'bind to specified address')
     .parse(process.argv);
 
 
