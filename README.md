@@ -38,9 +38,10 @@ Open your favorite FTP client, for instance [FileZilla](https://filezilla-projec
  * Username: `{api-key}@{store-name}`
  * Password: `{api-password}`
 
-Then save/connect and you should be able to browse your assets and templates including upload, delete, rename, download and move.
+Then save/connect and you should be able to browse your assets and templates including upload, delete, rename, download and move. When you first connect, you should see a list of folders which corresponds to your different themes. Choose your theme and go into that directory. There you will see a few directories (assets, config, layout, snippets, templates). You can add/rename/delete files from these directories, but you will not be able to create/delete sub-directories due to limitations in place by Shopify. You must use the folder structure that exists.
 
-Note: your username contains __both__ your API key and your store name (separated by `@`).
+Note: Your username contains __both__ your API key and your store name (separated by `@`).
+
 Also note: Make sure your FTP client is NOT using TLS or SSL.
 
 I'd like to get this working with [ExpanDrive](http://www.expandrive.com/) to mount as a local directory. However, currently this won't work with ExpanDrive because we can't upload/download ranges (partial files) using the Shopify API.
