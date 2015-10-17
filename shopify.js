@@ -332,16 +332,21 @@
       callback = args.pop();
       qs = (typeof args[args.length - 1] === 'object') ? args.pop() : null;
       request(this.url(resource, qs), function(error, response, body) {
-        if (!error) {
-          var contentType = response.headers['content-type'].split(';')[0].toLowerCase();
-          if (contentType === 'application/json') {
-            body = JSON.parse(body);
-            return callback(null, body)
-          } else {
-            error = new Error('Unexpected Content-Type');
-          }
+        if (error) return callback(error);
+        if (response.statusCode !== 200) {
+          return callback(new Error('HTTP Response Status: ' + response.statusCode))
         }
-        callback(error);
+        var contentType = response.headers['content-type'].split(';')[0].toLowerCase();
+        if (contentType === 'application/json') {
+          try {
+            body = JSON.parse(body);
+          } catch(e) {
+            return callback(new Error('Unable to parse response JSON; Content-Length: ' + response.headers['content-length']));
+          }
+          return callback(null, body)
+        } else {
+          return callback(new Error('Unexpected Content-Type'));
+        }
       });
     },
 
