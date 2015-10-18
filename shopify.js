@@ -7,6 +7,7 @@
   var commander = require('commander');
   var request = require('request');
   var ftpd = require('ftpd');
+  var path = require('path');
 
   commander
     .version(require('./package.json').version)
@@ -14,6 +15,9 @@
     .option('-b, --bind [address]', 'bind to specified address')
     .parse(process.argv);
 
+
+  var PATH_SEP = path.sep;
+  var _slice = Array.prototype.slice;
 
   var config = {
     port: commander.port || 2121,
@@ -328,7 +332,7 @@
     },
 
     get: function(resource, qs, callback) {
-      var args = Array.prototype.slice.call(arguments);
+      var args = _slice.call(arguments);
       callback = args.pop();
       qs = (typeof args[args.length - 1] === 'object') ? args.pop() : null;
       request(this.url(resource, qs), function(error, response, body) {
@@ -351,7 +355,7 @@
     },
 
     put: function(resource, data, callback) {
-      var args = Array.prototype.slice.call(arguments);
+      var args = _slice.call(arguments);
       callback = args.pop();
       data = (typeof args[args.length - 1] === 'object') ? args.pop() : {};
       request(
@@ -364,7 +368,7 @@
     },
 
     delete: function(resource, qs, callback) {
-      var args = Array.prototype.slice.call(arguments);
+      var args = _slice.call(arguments);
       callback = args.pop();
       qs = (typeof args[args.length - 1] === 'object') ? args.pop() : null;
       request(
@@ -391,6 +395,24 @@
       return result;
     }
   };
+
+  // Windows path support
+  if (PATH_SEP !== '/') {
+    [
+      'readdir', 'stat', 'mkdir', 'rmdir', 'rename', 'unlink', 'createReadStream',
+      'createWriteStream', 'readFile', 'writeFile'
+    ].forEach(function(methodName) {
+      var oldMethod = Proxy.prototype[methodName];
+      var numToFix = (methodName === 'rename') ? 2 : 1;
+      Proxy.prototype[methodName] = function() {
+        var args = _slice.call(arguments);
+        for (var i = 0; i < numToFix; i++) {
+          args[i] = args[i].split(PATH_SEP).join('/');
+        }
+        return oldMethod.apply(this, args);
+      };
+    });
+  }
 
   function StatsObject(type, item) {
     this.name = item.name || '';
