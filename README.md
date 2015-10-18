@@ -2,7 +2,7 @@
 
 This runs a local FTP server (on localhost) that will communicate with Shopify over HTTP API and allows you to upload/download/edit your theme files and assets using your favorite FTP client.
 
-Note: this tool is built with [Node.js](https://nodejs.org) and is installed via [npm](https://www.npmjs.org) so make sure to have Node installed. I have tested this only on Mac but it should work fine on Windows (EDIT: this is currently NOT working on Windows due to an error parsing JSON; fix coming soon). Please [submit an issue](https://github.com/sstur/shopify-ftp/issues) if you come across any bugs.
+Note: this tool is built with [Node.js](https://nodejs.org) and is installed via [npm](https://www.npmjs.org) so make sure to have Node installed. I have tested this on Mac and Windows. Please [submit an issue](https://github.com/sstur/shopify-ftp/issues) if you come across any bugs.
  
 ###Installation:
 
